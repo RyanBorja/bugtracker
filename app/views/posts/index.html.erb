@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+</div>
+
+<!-- <canvas class="my-4" id="myChart" width="900" height="300"></canvas> -->
+
+<h2>Tickets</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+    <!--<th>States</th>
+        <th>Date</th>
+        <th>Submited By</th> -->
+      </tr>
+    </thead>
+    <tbody>
+        <% @posts.reverse.each do |post| %>
+            <tr>
+                <td><%= link_to post.id, post_path(post) %></td>
+                <td><%= link_to post.title, post_path(post)  %></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      datasets: [
+        {
+            label: 'Open',
+            data: [15],
+            fill: false,
+            backgroundColor: 'rgb(0, 123, 255, 0.2)',
+            borderColor: '#007bff',
+            borderWidth: 1,
+        },
+        {
+            label: 'Closed',
+            data: [1],
+            fill: false,
+            backgroundColor: 'rgb(40, 167, 69, 0.2)',
+            borderColor: '#28a745',
+            borderWidth: 1,
+        },
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      legend: {
+        display: true,
+      }
+    }
+  });
+</script>
